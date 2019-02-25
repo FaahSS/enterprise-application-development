@@ -44,7 +44,7 @@ public class Empresa {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
-	@Column(name = "nr_cnpj", nullable = false, length = 18)
+	@Column(name = "nr_cnpj", nullable = false, length = 19)
 	private String cnpj;
 
 	

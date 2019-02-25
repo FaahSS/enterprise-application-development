@@ -4,7 +4,6 @@ public class CommitException extends Exception {
 
 	public CommitException() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public CommitException(String arg0, Throwable arg1, boolean arg2, boolean arg3) {
