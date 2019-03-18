@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -30,7 +31,7 @@ public class Curso {
 	
 	@Id
 	@Column(name="cd_curso")
-	@GeneratedValue(generator = "curso")
+	@GeneratedValue(generator = "curso", strategy=GenerationType.SEQUENCE)
 	private int codigo;
 	
 	@Column(name="nm_curso", nullable = false, length=15)

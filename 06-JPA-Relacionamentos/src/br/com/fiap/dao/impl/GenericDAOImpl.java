@@ -8,44 +8,43 @@ import br.com.fiap.dao.GenericDAO;
 import br.com.fiap.exception.CodigoInexistenteException;
 import br.com.fiap.exception.CommitException;
 
-public abstract class GenericDAOImpl<Tabela, Chave> implements GenericDAO<Tabela, Chave> {
+public abstract class GenericDAOImpl <T, K> implements GenericDAO<T, K>{
 	private EntityManager em;
-	private Class<Tabela> clazz;
-
+	private Class<T> clazz;
+	
 	@SuppressWarnings("all")
 	public GenericDAOImpl(EntityManager em) {
 		super();
 		this.em = em;
-		this.clazz = (Class<Tabela>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+		this.clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
-
+	
 	@Override
-	public void cadastrar(Tabela entidade) {
+	public void cadastrar(T entidade) {
 		em.persist(entidade);
 	}
-
+	
 	@Override
-	public void atualizar(Tabela entidade) {
+	public void atualizar(T entidade) {
 		em.merge(entidade);
 	}
-
+	
 	@Override
-	public void excluir(Chave id) throws CodigoInexistenteException {
-		Tabela entidade = pesquisar(id);
+	public void excluir(K id) throws CodigoInexistenteException{
+		T entidade = pesquisar(id);
 		em.remove(entidade);
 	}
-
+	
 	@Override
-	public Tabela pesquisar(Chave id) throws CodigoInexistenteException {
-
-		Tabela entidade = em.find(clazz, id);
-		if (entidade == null) {
+	public T pesquisar(K id) throws CodigoInexistenteException{
+		T entidade = em.find(clazz, id);
+		if(entidade == null) {
 			throw new CodigoInexistenteException();
 		}
 		return entidade;
 	}
-
-	public void commit() throws CommitException {
+	
+	public void commit() throws CommitException{
 		try {
 			em.getTransaction().begin();
 			em.getTransaction().commit();
@@ -54,8 +53,5 @@ public abstract class GenericDAOImpl<Tabela, Chave> implements GenericDAO<Tabela
 			em.getTransaction().rollback();
 			throw new CommitException();
 		}
-
 	}
-
-
 }
