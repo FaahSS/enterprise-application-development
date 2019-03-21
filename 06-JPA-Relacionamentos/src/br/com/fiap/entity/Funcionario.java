@@ -36,6 +36,58 @@ public class Funcionario {
 	
 	@Column(name="vl_salario", nullable = false)
 	private float salario;
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Calendar getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Calendar dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public float getSalario() {
+		return salario;
+	}
+
+	public void setSalario(float salario) {
+		this.salario = salario;
+	}
+
+	public Funcionario(String nome, Calendar dataNascimento, float salario) {
+		super();
+		this.nome = nome;
+		this.dataNascimento = dataNascimento;
+		this.salario = salario;
+	}
+
+	public Funcionario() {
+		super();
+	}
+	
 	
 	
 

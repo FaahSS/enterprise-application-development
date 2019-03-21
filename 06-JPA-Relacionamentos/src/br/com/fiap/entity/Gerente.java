@@ -30,5 +30,51 @@ public class Gerente {
 	@Column(name="ds_nivel", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Nivel nivel;
+	
+	
+
+	public Gerente() {
+		super();
+	}
+
+	public Gerente(String nome, Nivel nivel) {
+		super();
+		this.nome = nome;
+		this.nivel = nivel;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Nivel getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
+	}
+	
+	
 
 }
