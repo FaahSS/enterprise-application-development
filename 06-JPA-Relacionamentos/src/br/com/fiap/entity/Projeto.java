@@ -1,6 +1,8 @@
 package br.com.fiap.entity;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,6 +29,9 @@ public class Projeto {
 	@Column(name="nm_projeto", nullable = false, length=100)
 	private String nome;
 	
+	@ManyToMany(mappedBy = "projetos")
+	private List<Funcionario> funcionario; 
+	
 	@Column(name="ds_status", nullable=false)
 	@Enumerated(EnumType.STRING)
 	private Status status;
@@ -37,6 +43,20 @@ public class Projeto {
 	@Temporal(TemporalType.DATE)
 	@Column(name="dt_fim", nullable=false)
 	private Calendar dataFim;
+
+	
+
+	public Projeto() {
+		super();
+	}
+
+	public Projeto(String nome, Status status, Calendar dataInicio, Calendar dataFim) {
+		super();
+		this.nome = nome;
+		this.status = status;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+	}
 
 	public int getCodigo() {
 		return codigo;
@@ -76,6 +96,14 @@ public class Projeto {
 
 	public void setDataFim(Calendar dataFim) {
 		this.dataFim = dataFim;
+	}
+
+	public List<Funcionario> getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(List<Funcionario> funcionario) {
+		this.funcionario = funcionario;
 	}
 	
 	
