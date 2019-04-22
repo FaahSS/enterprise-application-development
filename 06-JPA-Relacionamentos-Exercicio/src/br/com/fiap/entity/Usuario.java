@@ -3,8 +3,10 @@ package br.com.fiap.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +26,7 @@ public class Usuario {
 	@Column(name="nm_usuario", nullable=false, length=100)
 	private String nome;
 	
-	@ManyToMany(mappedBy="usuarios")
+	@ManyToMany(mappedBy="usuarios", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private List<ItemTeste> itens = new ArrayList<ItemTeste>();
 
 	

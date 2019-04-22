@@ -3,8 +3,10 @@ package br.com.fiap.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,11 +28,11 @@ public class ItemTeste {
 	@Column(name="ds_item_teste")
 	private String descricao;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinColumn(name="cd_caso_teste")
 	private CasoTeste casoTeste;
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 
 	

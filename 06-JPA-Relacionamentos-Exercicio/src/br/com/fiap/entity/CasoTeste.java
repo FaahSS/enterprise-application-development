@@ -38,6 +38,18 @@ public class CasoTeste {
 	@OneToMany(mappedBy = "casoTeste", cascade = CascadeType.PERSIST)
 	private List<ItemTeste> itens = new ArrayList<ItemTeste>();
 	
+	public void addItem(ItemTeste item) {
+		itens.add(item);
+		item.setCasoTeste(this);
+	}
+
+	public List<ItemTeste> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ItemTeste> itens) {
+		this.itens = itens;
+	}
 
 	public CasoTeste(String nome, String descricao) {
 		super();
